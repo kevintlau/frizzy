@@ -4,29 +4,27 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 # Create your models here.
-# class User(models.Model):
-#     first_name = models.CharField(max_length=50)
-#     last_name = models.CharField(max_length=50)
-#     email = models.CharField(max_length=200)
-#     address = models.TextField(max_length=200)
-#     password = models.CharField(max_length=100)
-#     phone_number = models.CharField(min_length=10, max_length=11)
+class Profile(models.Model):
+    address = models.TextField(max_length=200)
+    phone_number = models.CharField(max_length=11)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-#     def __str__(self):
-#         return self.email
+    def __str__(self):
+        return self.user.email
     
-    
+    def get_absolute_url(self):
+        return reverse('user_detail', kwargs={ 'pk': self.id })
 
 class Shop(models.Model):
     name = models.CharField(max_length=200)
     address = models.TextField(max_length=200)
-    phone_number = models.CharField(min_length=10, max_length=11)
+    phone_number = models.CharField(max_length=11)
     email = models.CharField(max_length=200)
     website = models.CharField(max_length=200)
     description = models.TextField(max_length=400)
-    shop_img = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+    # shop_img = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     city = models.CharField(max_length=200)
-    rating = models.DecimalField(max_digits=1, decimal_places=1, min_value=0.0, max_value=5.0)
+    rating = models.DecimalField(max_digits=1, decimal_places=1)
     delivery_fee = models.DecimalField(max_digits=2, decimal_places=2)
 
     def __str__(self):
@@ -45,7 +43,7 @@ class IceCream(models.Model):
     flavor = models.CharField(max_length=200)
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=2, decimal_places=2)
-    icecream_img = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
+    # icecream_img = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     description = models.TextField(max_length=400)
     promotion = models.DecimalField(max_digits=2, decimal_places=2)
     size = models.CharField(
@@ -60,7 +58,7 @@ class IceCream(models.Model):
     def get_absolute_url(self):
         return reverse('icecream_detail', kwargs={ 'pk': self.id })
 
-class CreditCard():
+class CreditCard(models.Model):
     card_number = models.CharField(max_length=200)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
@@ -75,7 +73,7 @@ class CreditCard():
     def get_absolute_url(self):
         return reverse('card_detail', kwargs={ 'pk': self.id })
 
-class Order():
+class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     creditcard = models.ForeignKey(CreditCard, on_delete=models.CASCADE)
