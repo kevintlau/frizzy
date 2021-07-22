@@ -78,8 +78,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'frizzy',
-        'USER': 'postgres',
-        'PASSWORD': 'pwd123',
     }
 }
 
