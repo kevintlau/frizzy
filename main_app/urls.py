@@ -23,7 +23,7 @@ urlpatterns = [
 	# update for creditcard selection
 	path("orders/<int:pk>/update/", views.OrderUpdate.as_view(), name="order_update"),
 	path("orders/<int:pk>/delete/", views.OrderDelete.as_view(), name="order_delete"),
-	path("orders/<int:pk>/", views.order_detail, name="order_detail"),
+	path("orders/<int:pk>/", views.OrderDetail.as_view(), name="order_detail"),
 
 	# shops CRUD for admins - need to find a way to authorize
 	# alternatively, don't even make urls and views for this feature, since it's not user-facing
