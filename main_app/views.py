@@ -51,6 +51,10 @@ class ProfileCreate(CreateView):
 class ProfileUpdate(UpdateView):
 	model = Profile
 	fields = ["address", "phone_number"]
+def add_creditcard(request, profile_id):
+	pass
+def assoc_order(request, profile_id, order_id):
+	pass
 
 
 class OrderList(ListView):
