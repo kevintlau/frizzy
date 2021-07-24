@@ -1,0 +1,11 @@
+[
+    {
+        "model": "main_app.Profile",
+        "pk": 1,
+        "fields": {
+            "address": "",
+            "phone_number": "1234567901",
+            "user": 1
+        }
+    }
+]

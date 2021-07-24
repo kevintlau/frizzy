@@ -1,5 +1,7 @@
 from django.db import models
+from django.db.models.deletion import CASCADE
 from django.urls import reverse
+from django.conf import settings
 # Django built-in User Model from auth
 from django.contrib.auth.models import User
 
