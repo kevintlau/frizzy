@@ -131,5 +131,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # when user logs in, redirect to orders
 # when user logs out, redirect to home
 # refer to docs for django.contrib.auth
-LOGIN_REDIRECT_URL = '/orders/'
+LOGIN_REDIRECT_URL = '/profile/'
 LOGOUT_REDIRECT_URL = '/'

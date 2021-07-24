@@ -31,7 +31,7 @@ def signup(request):
 		if form.is_valid():
 			user = form.save()
 			login(request, user)
-			return redirect("order_index")
+			return redirect("profile_detail")
 		else:
 			error_message = "Invalid signup data - please try again"
 	form = UserCreationForm()
@@ -42,8 +42,11 @@ def signup(request):
 
 class ProfileList(ListView):
 	model = Profile
-class ProfileDetail(DetailView):
-	model = Profile
+# class ProfileDetail(DetailView):
+# 	model = Profile
+def profile(request):
+	return render(request, 'main_app/profile_detail.html')
+
 class ProfileCreate(CreateView):
 	model = Profile
 	# what do we do about the user 1:1 relationship?
