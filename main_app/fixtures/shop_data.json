@@ -1,0 +1,32 @@
+[
+    {
+        "model": "main_app.Shop",
+        "pk": 1,
+        "fields": {
+            "name": "Shop",
+            "address": "market street",
+            "phone_number": "1234567890",
+            "email": "shop1email.email",
+            "website": "shop1@shop1.shop1",
+            "description": "shop icecream is vegan!",
+            "city": "market city",
+            "rating": 5.0,
+            "delivery_fee": 2.00
+        }
+    },
+    {
+        "model": "main_app.Shop",
+        "pk": 2,
+        "fields": {
+            "name": "Shop2",
+            "address": "berry street",
+            "phone_number": "1239567890",
+            "email": "shop2email.email",
+            "website": "shop1@shop2.shop2",
+            "description": "we have new specialities every week!",
+            "city": "berry city",
+            "rating": 4.0,
+            "delivery_fee": 2.00
+        }
+    }
+]

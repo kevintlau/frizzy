@@ -24,8 +24,8 @@ class Shop(models.Model):
     description = models.TextField(max_length=400)
     # shop_img = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     city = models.CharField(max_length=200)
-    rating = models.DecimalField(max_digits=1, decimal_places=1)
-    delivery_fee = models.DecimalField(max_digits=2, decimal_places=2)
+    rating = models.DecimalField(max_digits=2, decimal_places=1)
+    delivery_fee = models.DecimalField(max_digits=3, decimal_places=2)
 
     def __str__(self):
         return self.name
