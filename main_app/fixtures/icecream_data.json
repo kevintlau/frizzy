@@ -1,0 +1,182 @@
+[
+    {
+       "model": "main_app.IceCream",
+       "pk": 1,
+       "fields": {
+           "flavor": "Blueberry Swirl",
+           "shop": 1,
+           "price": 4.00,
+           "description": "Creamy blend of fresh blueberries and vanilla ice cream",
+           "promotion": 2.00,
+           "size": "S"
+       }
+    },
+    {
+       "model": "main_app.IceCream",
+       "pk": 2,
+       "fields": {
+           "flavor": "Chocolate Brownie",
+           "shop": 1,
+           "price": 3.00,
+           "description": "Delicious brownie chuncks in smooth chocolate cream",
+           "promotion": 2.00,
+           "size": "S"
+       }
+    },
+    {
+       "model": "main_app.IceCream",
+       "pk": 3,
+       "fields": {
+           "flavor": "Honeycomb",
+           "shop": 1,
+           "price": 4.00,
+           "description": "Honeycomb crumbles in creamy vanilla cream",
+           "promotion": 1.00,
+           "size": "S"
+       }
+    },
+    {
+       "model": "main_app.IceCream",
+       "pk": 4,
+       "fields": {
+           "flavor": "Raspberry Sherbert",
+           "shop": 2,
+           "price": 4.00,
+           "description": "Sweet and sour raspberry sherbert for summer days",
+           "promotion": 2.00,
+           "size": "S"
+       }
+    },
+    {
+       "model": "main_app.IceCream",
+       "pk": 5,
+       "fields": {
+           "flavor": "Strawberry Melon",
+           "shop": 2,
+           "price": 4.00,
+           "description": "Sweet strawberries in fresh melon cream",
+           "promotion": 2.00,
+           "size": "S"
+       }
+    },
+    {
+       "model": "main_app.IceCream",
+       "pk": 6,
+       "fields": {
+           "flavor": "Cinnamon dolce",
+           "shop": 2,
+           "price": 4.00,
+           "description": "Creamy blend of cinnamon and vanilla icecream",
+           "promotion": 2.00,
+           "size": "S"
+       }
+    },
+    {
+       "model": "main_app.IceCream",
+       "pk": 7,
+       "fields": {
+           "flavor": "Blueberry cheesecake",
+           "shop": 3,
+           "price": 4.00,
+           "description": "Creamy blend of fresh blueberries and creamy cheesecake ice cream",
+           "promotion": 2.00,
+           "size": "S"
+       }
+    },
+    {
+       "model": "main_app.IceCream",
+       "pk": 8,
+       "fields": {
+           "flavor": "Raspberry cheesecake",
+           "shop": 3,
+           "price": 4.00,
+           "description": "Creamy blend of fresh raspberries and creamy cheesecake ice cream",
+           "promotion": 2.00,
+           "size": "S"
+       }
+    },
+    {
+       "model": "main_app.IceCream",
+       "pk": 9,
+       "fields": {
+           "flavor": "Strawberry cheesecake",
+           "shop": 3,
+           "price": 4.00,
+           "description": "Creamy blend of fresh strawberries and creamy cheesecake ice cream",
+           "promotion": 2.00,
+           "size": "S"
+       }
+    },
+    {
+       "model": "main_app.IceCream",
+       "pk": 10,
+       "fields": {
+           "flavor": "Caramel crumble",
+           "shop": 4,
+           "price": 4.00,
+           "description": "Caramel crumbles in sweet vanilla",
+           "promotion": 2.00,
+           "size": "S"
+       }
+    },
+    {
+       "model": "main_app.IceCream",
+       "pk": 11,
+       "fields": {
+           "flavor": "Oreo crumble",
+           "shop": 4,
+           "price": 4.00,
+           "description": "Cookies and cream ice cream made with love",
+           "promotion": 2.00,
+           "size": "S"
+       }
+    },
+    {
+       "model": "main_app.IceCream",
+       "pk": 12,
+       "fields": {
+           "flavor": "Shortbread cream",
+           "shop": 4,
+           "price": 4.00,
+           "description": "Shortbread crumble in vanilla icecream",
+           "promotion": 1.00,
+           "size": "S"
+       }
+    },
+    {
+       "model": "main_app.IceCream",
+       "pk": 13,
+       "fields": {
+           "flavor": "Mango mango",
+           "shop": 5,
+           "price": 4.00,
+           "description": "Fresh mango pieces in vanilla ice cream",
+           "promotion": 2.00,
+           "size": "S"
+       }
+    },
+    {
+       "model": "main_app.IceCream",
+       "pk": 14,
+       "fields": {
+           "flavor": "Tart Passionfruit",
+           "shop": 5,
+           "price": 4.00,
+           "description": "Sweet and sour passionfruit with vanilla icecream",
+           "promotion": 2.00,
+           "size": "S"
+       }
+    },
+    {
+       "model": "main_app.IceCream",
+       "pk": 15,
+       "fields": {
+           "flavor": "Strawberry delight",
+           "shop": 5,
+           "price": 4.00,
+           "description": "Fresh strawberries in vanilla ice cream",
+           "promotion": 2.00,
+           "size": "S"
+       }
+    }
+]

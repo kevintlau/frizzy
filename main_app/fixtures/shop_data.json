@@ -22,11 +22,56 @@
             "address": "berry street",
             "phone_number": "1239567890",
             "email": "shop2email.email",
-            "website": "shop1@shop2.shop2",
+            "website": "shop3@shop2.shop2",
             "description": "we have new specialities every week!",
             "city": "berry city",
             "rating": 4.0,
             "delivery_fee": 2.00
+        }
+    },
+    {
+        "model": "main_app.Shop",
+        "pk": 3,
+        "fields": {
+            "name": "Shop3",
+            "address": "cheesecake street",
+            "phone_number": "1139567890",
+            "email": "shop3email.email",
+            "website": "shop3@shop3.shop3",
+            "description": "we love creamy cream icecream!",
+            "city": "cheesecake city",
+            "rating": 5.0,
+            "delivery_fee": 2.00
+        }
+    },
+    {
+        "model": "main_app.Shop",
+        "pk": 4,
+        "fields": {
+            "name": "Shop4",
+            "address": "caramelcrumble street",
+            "phone_number": "1249567890",
+            "email": "shop4email.email",
+            "website": "shop4@shop4.shop4",
+            "description": "we want you to feel at home!",
+            "city": "caramelcrumble city",
+            "rating": 4.0,
+            "delivery_fee": 1.00
+        }
+    },
+    {
+        "model": "main_app.Shop",
+        "pk": 5,
+        "fields": {
+            "name": "Shop3",
+            "address": "mango street",
+            "phone_number": "1238567890",
+            "email": "shop5email.email",
+            "website": "shop5@shop5.shop5",
+            "description": "we want you to try out fruity delights!",
+            "city": "mango city",
+            "rating": 5.0,
+            "delivery_fee": 3.00
         }
     }
 ]

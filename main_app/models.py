@@ -42,10 +42,10 @@ class IceCream(models.Model):
     )
     flavor = models.CharField(max_length=200)
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=2, decimal_places=2)
+    price = models.DecimalField(max_digits=3, decimal_places=2)
     # icecream_img = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100)
     description = models.TextField(max_length=400)
-    promotion = models.DecimalField(max_digits=2, decimal_places=2)
+    promotion = models.DecimalField(max_digits=3, decimal_places=2)
     size = models.CharField(
         max_length=1,
         choices=SIZES,
