@@ -1,6 +1,12 @@
-
 footer.page-footer {
     padding-top: 0;
     text-align: right;
     flex-direction: column;
   }
+
+#main-profile-container {
+    padding-top: 100px;
+    background-color: black;
+    color: white;
+}
+

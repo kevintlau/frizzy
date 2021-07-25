@@ -2,11 +2,13 @@
 
 {% block content %}
 
-<h1>Login</h1>
+<h1>Log In</h1>
 <form action="{% url 'login' %}" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Login" class="btn">
+    <table class="table">
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Log In" class="btn btn-primary">
     <input type="hidden" name="next" value="{{ next }}">
 </form>
 {% endblock %}

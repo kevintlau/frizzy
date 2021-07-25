@@ -9,8 +9,9 @@ from django.views.generic import (
 )
 from .models import Profile, CreditCard, Order, Shop, IceCream
 # from .forms import 
-from django.contrib.auth import login
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
+# from django.contrib.auth.forms import UserCreationForm
+from main_app.forms import SignUpForm
 # decorator to enforce login for view functions
 from django.contrib.auth.decorators import login_required
 # class-based views require a mixin - classes can't have decorators
@@ -30,14 +31,21 @@ def about(request):
 def signup(request):
 	error_message = ""
 	if request.method == "POST":
-		form = UserCreationForm(request.POST)
+		form = SignUpForm(request.POST)
 		if form.is_valid():
 			user = form.save()
+			# load the profile instance created by the signal
+			user.refresh_from_db()
+			user.profile.address = form.cleaned_data.get('address')
+			user.profile.phone_number = form.cleaned_data.get('phone_number')
+			user.save()
+			raw_password = form.cleaned_data.get('password1')
+			user = authenticate(username=user.username, password=raw_password)
 			login(request, user)
-			return redirect("order_index")
+			return redirect("profile_detail")
 		else:
 			error_message = "Invalid signup data - please try again"
-	form = UserCreationForm()
+	form = SignUpForm()
 	return render(request, "registration/signup.html", { 
     	"form": form,
     	"error_message": error_message,
@@ -62,8 +70,11 @@ def search_shops(request):
 
 class ProfileList(ListView):
 	model = Profile
-class ProfileDetail(DetailView):
-	model = Profile
+# class ProfileDetail(DetailView):
+# 	model = Profile
+def profile(request):
+	return render(request, 'main_app/profile_detail.html')
+
 class ProfileCreate(CreateView):
 	model = Profile
 	# what do we do about the user 1:1 relationship?
