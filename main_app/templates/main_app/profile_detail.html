@@ -7,7 +7,6 @@
             font: white;
             align-content: center;
             text-align: left;
-            font-family: 'Pacifico', cursive;
         }
         #cart-div{
             text-align: left;
@@ -16,8 +15,9 @@
     </style>
     <div id="main-profile-container" class="container">
         <div class="row">
-            <div class="col-6">
-                <h2 style="color: pink;">Welcome, {{ user.username }}</h1>
+            <h2 style="color: pink; font-family: 'Shrikhand', Cursive;">Welcome, {{ user.username }}</h1>
+            <div style="font-family: 'Fanwood Text', Serif;" class="col-6">
+                <!-- <h2 style="color: pink; font-family: 'Shrikhand', Cursive;">Welcome, {{ user.username }}</h1> -->
                 <br>
                 <br>
                 <p>Your Location: {{user.profile.address}}</p>
@@ -25,10 +25,10 @@
             </div>
             <div class="col-6">
                 <div class="card" style="width: 30rem; color: white; background-color: black;">
-                    <h2>Got IceCream?</h2>
+                    <h2 style="font-family: 'Shrikhand', Cursive;">Got IceCream?</h2>
                     <img src="../../static/images/cones.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <p style="font-size: 20px;" class="card-text">
+                      <p style="font-size: 20px;font-family: 'Fanwood Text', Serif;" class="card-text">
                         Frizzy is a delivery app that connects you to your favorite flavors, whether they’re in ice cream parlors, restaurants, and even grocery stores. You can order from a wide variety of ice cream styles, like plain scooped cups to ice cream bars to full-size tubs from a freezer. You can even send some love to a friend or relative who needs an icy treat to brighten their day.
                         Whatever the occasion or mood, use Frizzy for hassle-free ice cream delivery!
                         </p>
@@ -42,12 +42,12 @@
             </div>
         </div> -->
         <div style="background-color: black;" class="card mb-3" style="max-width: cover;">
-            <h2>Checkout! Ice cream's melting...</h2>
+            <h2 style="font-family: 'Shrikhand', Cursive;">Checkout! Ice cream's melting...</h2>
             <div class="row g-0">
               <div class="col-md-4">
                 <img src="../../static/images/berry-cone.jpg" class="img-fluid rounded-start" alt="...">
               </div>
-              <div class="col-md-8">
+              <div style="font-family: 'Fanwood Text', Serif;" class="col-md-8">
                 <div class="card-body">
                   <h5 class="card-title">Your Cart</h5>
                   <p class="card-text"></p>
