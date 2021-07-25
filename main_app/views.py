@@ -1,4 +1,4 @@
-
+from django.http import request
 from django.shortcuts import redirect, render
 from django.views.generic import (
 	CreateView, 
@@ -16,6 +16,8 @@ from main_app.forms import SignUpForm
 from django.contrib.auth.decorators import login_required
 # class-based views require a mixin - classes can't have decorators
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+
 
 # Create your views here.
 
@@ -48,6 +50,23 @@ def signup(request):
     	"form": form,
     	"error_message": error_message,
   	})
+def search_shops(request):
+	if request.method == "POST":
+		searched = UserCreationForm(request.POST)
+		if searched.is_valid():
+			user = searched.save()
+			login(request, user)
+			shop = Shop.objects.filter(name__contains= searched)
+			return render(request, 'search_shops.html',
+			{'searched':searched, 
+			'shop':shop})
+		else:
+			error_message = "Invalid search - please try again" 
+			return render(request, "registration/signup.html", { 
+    		"form": form,
+    		"error_message": error_message,
+			})
+
 
 class ProfileList(ListView):
 	model = Profile
