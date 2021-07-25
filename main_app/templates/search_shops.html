@@ -1,0 +1,15 @@
+{% extends 'home.html' %}
+{% block content %}
+    <center>
+    {% if searched %}
+    <h1>You Searched For {{
+        searched }}</h1>
+        <br/>
+        {% for shop in shops %}
+            {{ shop }} <br/>
+        {% endfor %}
+    {% else %}
+        <h1> Please pick a shop...</h1>
+    {% endif %}
+    </center>
+{% endblock %}

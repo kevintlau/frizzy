@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
 	path('', views.home, name="home"),
 	path("about/", views.about, name="about"),
+	path("search_shops/", views.search_shops, name="search_shops"),
 
 	path("profile/<int:pk>/", views.ProfileDetail.as_view(), name="profile_detail"),
 	path("profile/create/", views.ProfileCreate.as_view(), name="profile_create"),
@@ -24,6 +25,7 @@ urlpatterns = [
 	path("orders/<int:pk>/update/", views.OrderUpdate.as_view(), name="order_update"),
 	path("orders/<int:pk>/delete/", views.OrderDelete.as_view(), name="order_delete"),
 	path("orders/<int:pk>/", views.OrderDetail.as_view(), name="order_detail"),
+
 
 	# shops CRUD for admins - need to find a way to authorize
 	# alternatively, don't even make urls and views for this feature, since it's not user-facing

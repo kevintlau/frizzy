@@ -35,6 +35,14 @@
                 <a class="nav-item nav-link" href="">Profile</a>
                 <a class="nav-item nav-link" href="">Payment</a>
               </div>
+              <form class="d-flex" method="POST" action= "{% url 'search_shops' %}">
+                  {% csrf_token %}
+                  
+                  <input class="form-control me-2"
+                  type="search" placeholder="Search"
+                  aria-label="Search">
+                  <button class = "btn btn-outline secondary" type="submit">Search</button>
+              </form>
             </div>
             {% if user.is_authenticated %}
                     <li>
@@ -56,6 +64,8 @@
             {% endblock %}
         </main>
         <!-- footer here -->
-        <footer></footer>
+        <footer class="page-footer">
+            <div class="right">All Rights Reserved, &copy; 2021 Frizzy &nbsp;</div>
+         </footer>
     </body>
 </html>
