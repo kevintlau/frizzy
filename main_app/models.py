@@ -5,6 +5,9 @@ from django.conf import settings
 # Django built-in User Model from auth
 from django.contrib.auth.models import User
 
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 # Create your models here.
 class Profile(models.Model):
     address = models.TextField(max_length=200)
@@ -16,6 +19,12 @@ class Profile(models.Model):
     
     def get_absolute_url(self):
         return reverse('user_detail', kwargs={ 'pk': self.id })
+
+@receiver(post_save, sender=User)
+def update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+    instance.profile.save()
 
 class Shop(models.Model):
     name = models.CharField(max_length=200)
