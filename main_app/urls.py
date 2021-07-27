@@ -4,13 +4,12 @@ from . import views
 urlpatterns = [
 	path('', views.home, name="home"),
 	path("about/", views.about, name="about"),
-	path("search_shops/", views.search_shops, name="search_shops"),
+	path("search/", views.SearchResultsView.as_view(), name="search_shops"),
 
 	# path("profile/<int:pk>/", views.ProfileDetail.as_view(), name="profile_detail"),
 	path("profile/", views.profile, name="profile_detail"),
 	path("profile/create/", views.ProfileCreate.as_view(), name="profile_create"),
 	path("profile/<int:pk>/update/", views.ProfileUpdate.as_view(), name="profile_update"),
-	path("profile/<int:pk>/add_creditcard/", views.add_creditcard, name="add_creditcard"),
 	path("profile/<int:profile_pk>/assoc_order/<int:order_pk>/", views.assoc_order, name="assoc_order"),
 
 	path("creditcards/", views.CreditCardDetail.as_view(), name="creditcard_index"),
@@ -18,7 +17,8 @@ urlpatterns = [
 	path("creditcards/create/", views.CreditCardCreate.as_view(), name="creditcard_create"),
 	path("creditcards/<int:pk>/update/", views.CreditCardUpdate.as_view(), name="creditcard_update"),
 	path("creditcards/<int:pk>/delete/", views.CreditCardDelete.as_view(), name="creditcard_delete"),
-
+	path('profile/<int:profile_id>/add_creditcard/', views.add_creditcard, name='add_creditcard'),
+	# path('profile/<int:profile_id>/add_creditcard/', views.add_creditcard, name='add_creditcard'),
 	path("orders/", views.OrderList.as_view(), name="order_index"),
 	# blank view with a button that submits a form to prepopulate user pk and store pk
 	path("orders/create/<int:user_pk>/<int:shop_pk>/", views.OrderCreate.as_view(), name="order_create"),

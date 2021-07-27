@@ -1,3 +1,4 @@
+from typing import List
 from django.http import request
 from django.shortcuts import redirect, render
 from django.views.generic import (
@@ -8,10 +9,11 @@ from django.views.generic import (
 	DetailView
 )
 from .models import Profile, CreditCard, Order, Shop, IceCream
+from django.db.models import Q
 # from .forms import 
 from django.contrib.auth import login, authenticate
 # from django.contrib.auth.forms import UserCreationForm
-from main_app.forms import SignUpForm
+from main_app.forms import SignUpForm, CreditCardForm
 # decorator to enforce login for view functions
 from django.contrib.auth.decorators import login_required
 # class-based views require a mixin - classes can't have decorators
@@ -50,22 +52,34 @@ def signup(request):
     	"form": form,
     	"error_message": error_message,
   	})
-def search_shops(request):
-	if request.method == "POST":
-		searched = UserCreationForm(request.POST)
-		if searched.is_valid():
-			user = searched.save()
-			login(request, user)
-			shop = Shop.objects.filter(name__contains= searched)
-			return render(request, 'search_shops.html',
-			{'searched':searched, 
-			'shop':shop})
-		else:
-			error_message = "Invalid search - please try again" 
-			return render(request, "registration/signup.html", { 
-    		"form": form,
-    		"error_message": error_message,
-			})
+
+class SearchResultsView(ListView):
+	model = Shop
+	template_name = "search_shops.html"
+
+	def get_queryset(self):
+		query = self.request.GET.get("search")
+		object_list = Shop.objects.filter(
+			Q(name__icontains=query) | Q(city__icontains=query)
+		)
+		return object_list
+
+# def search_shops(request):
+# 	if request.method == "POST":
+# 		searched = UserCreationForm(request.POST)
+# 		if searched.is_valid():
+# 			user = searched.save()
+# 			login(request, user)
+# 			shop = Shop.objects.filter(name__contains= searched)
+# 			return render(request, 'search_shops.html',
+# 			{'searched':searched, 
+# 			'shop':shop})
+# 		else:
+# 			error_message = "Invalid search - please try again" 
+# 			return render(request, "registration/signup.html", { 
+#     		"form": form,
+#     		"error_message": error_message,
+# 			})
 
 
 class ProfileList(ListView):
@@ -73,7 +87,11 @@ class ProfileList(ListView):
 # class ProfileDetail(DetailView):
 # 	model = Profile
 def profile(request):
-	return render(request, 'main_app/profile_detail.html')
+	creditcard_form = CreditCardForm()
+	return render(request, 'main_app/profile_detail.html', { 
+		'creditcard_form':creditcard_form
+	})
+	
 
 class ProfileCreate(CreateView):
 	model = Profile
@@ -82,8 +100,20 @@ class ProfileCreate(CreateView):
 class ProfileUpdate(UpdateView):
 	model = Profile
 	fields = ["address", "phone_number"]
+
+
+
 def add_creditcard(request, profile_id):
-	pass
+	form = CreditCardForm(request.POST)
+  # validate the form
+	if form.is_valid():
+	# don't save the form to the db until it
+	# has the cat_id assigned
+		new_creditcard = form.save(commit=False)
+		new_creditcard.profile_id = profile_id
+		new_creditcard.save()
+	return redirect('profile_detail')
+
 def assoc_order(request, profile_id, order_id):
 	pass
 
