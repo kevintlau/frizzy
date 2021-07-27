@@ -20,6 +20,9 @@
                     Website: {{ shop.website }}
                 </p>
                 <form action="#" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="profile_id" value="{{ user.profile.id }}">
+                    <input type="hidden" name="shop_id" value="{{ shop.id }}">
                     <button type="submit" class="btn btn-primary">
                         Start Order
                     </button>
