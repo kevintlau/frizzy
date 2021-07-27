@@ -1,15 +1,35 @@
 {% extends 'home.html' %}
 {% block content %}
-    <center>
-    {% if searched %}
-    <h1>You Searched For {{
-        searched }}</h1>
-        <br/>
-        {% for shop in shops %}
-            {{ shop }} <br/>
-        {% endfor %}
-    {% else %}
-        <h1> Please pick a shop...</h1>
-    {% endif %}
-    </center>
+
+    <h1>Search Results</h1>
+    <div class="container">
+    {% for shop in object_list %}
+        <div class="card mb-4" style="width: 36rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ shop.name }}</h5>
+                <p class="card-text">
+                    {{ shop.description }}
+                </p>
+                <p class="card-text">
+                    City: {{ shop.city }}
+                    <br>
+                    Phone: {{ shop.phone_number }}
+                    <br>
+                    Email: {{ shop.email }}
+                    <br>
+                    Website: {{ shop.website }}
+                </p>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="profile_id" value="{{ user.profile.id }}">
+                    <input type="hidden" name="shop_id" value="{{ shop.id }}">
+                    <button type="submit" class="btn btn-primary">
+                        Start Order
+                    </button>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
 {% endblock %}
