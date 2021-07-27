@@ -29,37 +29,56 @@
         <!-- nav here -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+            <button 
+                class="navbar-toggler" 
+                type="button" 
+                data-toggle="collapse" 
+                data-target="#navbarNavAltMarkup" 
+                aria-controls="navbarNavAltMarkup" 
+                aria-expanded="false" 
+                aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="{% url 'about' %}">About</a>
-                <a class="nav-item nav-link" href="{% url 'profile_detail' %}">Profile</a>
-                <a class="nav-item nav-link" href="">Payment</a>
-              </div>
-              <form class="d-flex" method="POST" action= "{% url 'search_shops' %}">
-                  {% csrf_token %}
-                  
-                  <input class="form-control me-2"
-                  type="search" placeholder="Search"
-                  aria-label="Search">
-                  <button class = "btn btn-outline secondary" type="submit">Search</button>
-              </form>
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="{% url 'home' %}">
+                        Home <span class="sr-only">(current)</span>
+                    </a>
+                    <a class="nav-item nav-link" href="{% url 'about' %}">
+                        About
+                    </a>
+                    <a class="nav-item nav-link" href="{% url 'profile_detail' %}">
+                        Profile
+                    </a>
+                    <a class="nav-item nav-link" href="">
+                        Payment
+                    </a>
+                </div>
+                <form class="d-flex" method="GET" action= "{% url 'search_shops' %}">
+                    {% csrf_token %}
+                    <input 
+                        class="form-control me-2"
+                        type="search"
+                        placeholder="Search by shop name or city"
+                        aria-label="Search"
+                        name="search"
+                    >
+                    <button class="btn btn-outline secondary" type="submit">Search</button>
+                </form>
             </div>
             {% if user.is_authenticated %}
-                    <li>
-                        <a href="{% url 'logout'%}">Log Out</a>
-                    </li>
-                    {% else %}
-                    <li>
-                        <a href="{% url 'login'%}">Log In</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'signup'%}">Sign Up</a>
-                    </li>
-                    {% endif %}
+                <li>
+                    <a href="{% url 'logout'%}">Log Out</a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{% url 'login'%}">Log In</a>
+                </li>
+                <li>
+                    <a href="{% url 'signup'%}">Sign Up</a>
+                </li>
+            {% endif %}
             </div>
         </nav>
         <main class="container">
