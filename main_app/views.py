@@ -98,7 +98,7 @@ def add_creditcard(request, profile_id):
 		new_creditcard = form.save(commit=False)
 		new_creditcard.profile_id = profile_id
 		new_creditcard.save()
-	return redirect('detail')
+	return redirect('profile_detail')
 
 def assoc_order(request, profile_id, order_id):
 	pass
