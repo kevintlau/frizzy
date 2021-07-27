@@ -11,7 +11,7 @@ from .models import Profile, CreditCard, Order, Shop, IceCream
 # from .forms import 
 from django.contrib.auth import login, authenticate
 # from django.contrib.auth.forms import UserCreationForm
-from main_app.forms import SignUpForm
+from main_app.forms import SignUpForm, CreditCardForm
 # decorator to enforce login for view functions
 from django.contrib.auth.decorators import login_required
 # class-based views require a mixin - classes can't have decorators
@@ -73,7 +73,11 @@ class ProfileList(ListView):
 # class ProfileDetail(DetailView):
 # 	model = Profile
 def profile(request):
-	return render(request, 'main_app/profile_detail.html')
+	creditcard_form = CreditCardForm()
+	return render(request, 'main_app/profile_detail.html', { 
+		'creditcard_form':creditcard_form
+	})
+	
 
 class ProfileCreate(CreateView):
 	model = Profile
@@ -82,8 +86,20 @@ class ProfileCreate(CreateView):
 class ProfileUpdate(UpdateView):
 	model = Profile
 	fields = ["address", "phone_number"]
+
+
+
 def add_creditcard(request, profile_id):
-	pass
+	form = CreditCardForm(request.POST)
+  # validate the form
+	if form.is_valid():
+	# don't save the form to the db until it
+	# has the cat_id assigned
+		new_creditcard = form.save(commit=False)
+		new_creditcard.profile_id = profile_id
+		new_creditcard.save()
+	return redirect('detail')
+
 def assoc_order(request, profile_id, order_id):
 	pass
 

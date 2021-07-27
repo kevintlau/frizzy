@@ -38,6 +38,8 @@
                 <a class="nav-item nav-link" href="{% url 'about' %}">About</a>
                 <a class="nav-item nav-link" href="{% url 'profile_detail' %}">Profile</a>
                 <a class="nav-item nav-link" href="">Payment</a>
+                <a class="nav-item nav-link" href="">Credit Card</a>
+   
               </div>
               <form class="d-flex" method="POST" action= "{% url 'search_shops' %}">
                   {% csrf_token %}
