@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+<center>
+<h1>{{ shop.name }}</h1>
+<br/><br>
+<p class="card-text">
+    City: {{ shop.city }}
+    <br>
+    Phone: {{ shop.phone_number }}
+    <br>
+    Email: {{ shop.email }}
+    <br>
+    Website: {{ shop.website }}
+</p>
+<p>
+    {% for flavor in flavors %}
+    <li>{{ flavor.flavor }}</li>
+    <li>{{ flavor.shop }}</li>
+    <li>{{ flavor.shop_id }}</li>
+    <form action="{% url 'add_order' user.profile.id shop.id %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="profile_id" value="{{ user.profile.id }}">
+        <input type="hidden" name="shop_id" value="{{ shop.id }}">
+        <button type="submit" class="btn btn-primary">
+            Add
+        </button>
+    </form>
+    {% endfor %}
+</p>
+<p>
+    <form action="{% url 'add_order' user.profile.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn" value="Add CreditCard">
+        <button type="submit" class="btn btn-primary">
+            Add Order
+        </button>
+    </form>
+</p>
+<!-- <p>
+    {% for flavor in flavors %}
+            {% if flavor.shop == shop.name %}
+            <li>{{ flavor.flavor }}</li>
+            <li>{{ flavor.shop }}</li>
+            <li>{{ flavor.shop_id }}</li>
+        {% endif %}
+    {% endfor %}
+</p> -->
+
+
+
+</center>
+{% endblock %}

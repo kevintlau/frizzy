@@ -13,7 +13,7 @@ from django.db.models import Q
 # from .forms import 
 from django.contrib.auth import login, authenticate
 # from django.contrib.auth.forms import UserCreationForm
-from main_app.forms import SignUpForm, CreditCardForm
+from main_app.forms import SignUpForm, CreditCardForm, OrderForm
 # decorator to enforce login for view functions
 from django.contrib.auth.decorators import login_required
 # class-based views require a mixin - classes can't have decorators
@@ -64,6 +64,11 @@ class SearchResultsView(ListView):
 		)
 		return object_list
 
+def shop_details(request, shop_id):
+	shop = Shop.objects.get(id=shop_id)
+	flavors = IceCream.objects.filter(shop_id=shop_id)
+	return render(request, 'main_app/shop_detail.html', {'shop': shop, 'flavors': flavors})
+
 # def search_shops(request):
 # 	if request.method == "POST":
 # 		searched = UserCreationForm(request.POST)
@@ -102,7 +107,6 @@ class ProfileUpdate(UpdateView):
 	fields = ["address", "phone_number"]
 
 
-
 def add_creditcard(request, profile_id):
 	form = CreditCardForm(request.POST)
   # validate the form
@@ -117,6 +121,14 @@ def add_creditcard(request, profile_id):
 def assoc_order(request, profile_id, order_id):
 	pass
 
+def add_order(request, profile_id, shop_id):
+	shop = Shop.objects.get(id=shop_id)
+	# form = OrderForm(request.POST)
+	# if form.is_valid():
+		# new_order = form.save(commit=False)
+		# new_order.profile_id = profile_id
+		# new_order.save()
+	return redirect('shop_detail', {'shop': shop})
 
 class OrderList(ListView):
 	model = Order
@@ -124,7 +136,7 @@ class OrderDetail(DetailView):
 	model = Order
 class OrderCreate(CreateView):
 	model = Order
-	fields = ["user_id", "shop_id", "creditcard_id"]
+	fields = ["user_id", "shop_id", "creditcard_id", "icecreams"]
 class OrderUpdate(UpdateView):
 	model = Order
 	fields = ["creditcard_id"]
@@ -167,6 +179,7 @@ class CreditCardDelete(DeleteView):
 # 	model = IceCream
 # class IceCreamCreate(CreateView):
 # 	model = IceCream
+# 	fields = "__all__"
 # class IceCreamUpdate(UpdateView):
 # 	model = IceCream
 # class IceCreamDelete(DeleteView):

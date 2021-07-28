@@ -5,6 +5,7 @@ urlpatterns = [
 	path('', views.home, name="home"),
 	path("about/", views.about, name="about"),
 	path("search/", views.SearchResultsView.as_view(), name="search_shops"),
+	path("search/<int:shop_id>/", views.shop_details, name="shop_detail"),
 
 	# path("profile/<int:pk>/", views.ProfileDetail.as_view(), name="profile_detail"),
 	path("profile/", views.profile, name="profile_detail"),
@@ -21,12 +22,16 @@ urlpatterns = [
 	# path('profile/<int:profile_id>/add_creditcard/', views.add_creditcard, name='add_creditcard'),
 	path("orders/", views.OrderList.as_view(), name="order_index"),
 	# blank view with a button that submits a form to prepopulate user pk and store pk
-	path("orders/create/<int:user_pk>/<int:shop_pk>/", views.OrderCreate.as_view(), name="order_create"),
+	# path("orders/create/<int:profile_id>/<int:shop_id>/", views.OrderCreate.as_view(), name="order_create"),
+	path('search/<int:profile_id>/<int:shop_id>/add_order/', views.add_order, name='add_order'),
+	# path('profile/<int:shop_id>/add_order/', views.add_order, name='add_order'),
 	# update for creditcard selection
 	path("orders/<int:pk>/update/", views.OrderUpdate.as_view(), name="order_update"),
 	path("orders/<int:pk>/delete/", views.OrderDelete.as_view(), name="order_delete"),
 	path("orders/<int:pk>/", views.OrderDetail.as_view(), name="order_detail"),
 
+	# path("search/<int:profile_id>/add_icecream/", views.add_icecream, name="add_icecream"),
+	# path("orders/create/", views.CreateOrder.as_view(), name="order_create")
 
 	# shops CRUD for admins - need to find a way to authorize
 	# alternatively, don't even make urls and views for this feature, since it's not user-facing
