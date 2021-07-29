@@ -3,7 +3,7 @@ from django.db.models import fields
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import CreditCard, IceCream, Order
+from .models import CreditCard, Order
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30)
@@ -53,4 +53,4 @@ class CreditCardForm(ModelForm):
 class OrderForm(ModelForm):
     class Meta:
         model = Order
-        fields = ['user', 'shop', 'icecreams']
+        fields = ['user', 'shop', 'creditcard', 'icecreams']

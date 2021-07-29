@@ -17,36 +17,20 @@
     <li>{{ flavor.flavor }}</li>
     <li>{{ flavor.shop }}</li>
     <li>{{ flavor.shop_id }}</li>
-    <form action="{% url 'add_order' user.profile.id shop.id %}" method="post">
-        {% csrf_token %}
-        <input type="hidden" name="profile_id" value="{{ user.profile.id }}">
-        <input type="hidden" name="shop_id" value="{{ shop.id }}">
-        <button type="submit" class="btn btn-primary">
-            Add
-        </button>
-    </form>
+    <button type="submit" class="btn btn-secondary">Add Flavor</button>
+    <button type="submit" class="btn btn-secondary">Remove Flavor</button>
     {% endfor %}
 </p>
+Create An Order for {{ shop.name }}:
+<form action="{% url 'add_order' shop.id%}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">
+        Create an order for this shop
+    </button>
+</form>
 <p>
-    <form action="{% url 'add_order' user.profile.id %}" method="post">
-        {% csrf_token %}
-        <input type="submit" class="btn" value="Add CreditCard">
-        <button type="submit" class="btn btn-primary">
-            Add Order
-        </button>
-    </form>
+    Orders: 
 </p>
-<!-- <p>
-    {% for flavor in flavors %}
-            {% if flavor.shop == shop.name %}
-            <li>{{ flavor.flavor }}</li>
-            <li>{{ flavor.shop }}</li>
-            <li>{{ flavor.shop_id }}</li>
-        {% endif %}
-    {% endfor %}
-</p> -->
-
-
-
 </center>
 {% endblock %}

@@ -42,7 +42,7 @@ class Shop(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('shop_detail', kwargs={ 'pk': self.id })
+        return reverse('shop_detail', kwargs={ 'shop_id': self.id })
 
 class IceCream(models.Model):
     SIZES = (
@@ -88,11 +88,12 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     creditcard = models.ForeignKey(CreditCard, on_delete=models.CASCADE)
-    icecreams = models.ManyToManyField(IceCream)
+    icecreams = models.ManyToManyField(IceCream, default='none')
+
 
     def __str__(self):
         return f"{self.user} at {self.shop}"
     
     def get_absolute_url(self):
-        return reverse('order_detail', kwargs={ 'pk': self.id })
+        return reverse('shop_detail', kwargs={ 'pk': self.id })
 
