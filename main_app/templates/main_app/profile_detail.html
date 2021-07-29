@@ -61,5 +61,13 @@
             {{ creditcard_form.as_p }}
             <input type="submit" class="btn" value="Add CreditCard">
         </form>
+              {% for credit_card in user.profile.creditcard_set.all %}
+                <div class="card-body">
+                 <p class="card-text">{{credit_card.card_number}}</p>
+                 <p class="card-text">{{credit_card.exp_date}}</p>
+                </div>
+              {% endfor %}
+          
+         
     </div>
 {% endblock %}

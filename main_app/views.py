@@ -105,10 +105,7 @@ class ProfileUpdate(UpdateView):
 
 def add_creditcard(request, profile_id):
 	form = CreditCardForm(request.POST)
-  # validate the form
 	if form.is_valid():
-	# don't save the form to the db until it
-	# has the cat_id assigned
 		new_creditcard = form.save(commit=False)
 		new_creditcard.profile_id = profile_id
 		new_creditcard.save()
