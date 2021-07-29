@@ -14,6 +14,7 @@ from django.db.models import Q
 from django.contrib.auth import login, authenticate
 # from django.contrib.auth.forms import UserCreationForm
 from main_app.forms import SignUpForm, CreditCardForm
+from main_app.forms import OrderForm
 # decorator to enforce login for view functions
 from django.contrib.auth.decorators import login_required
 # class-based views require a mixin - classes can't have decorators
@@ -64,6 +65,13 @@ class SearchResultsView(ListView):
 		)
 		return object_list
 
+def shop_details(request, shop_id):
+	shop = Shop.objects.get(id=shop_id)
+	flavors = IceCream.objects.filter(shop_id=shop_id)
+	order = Order.objects.all()
+	form = OrderForm()
+	return render(request, 'main_app/shop_detail.html', {'shop': shop, 'flavors': flavors, 'order': order, 'form': form})
+
 # def search_shops(request):
 # 	if request.method == "POST":
 # 		searched = UserCreationForm(request.POST)
@@ -102,7 +110,6 @@ class ProfileUpdate(UpdateView):
 	fields = ["address", "phone_number"]
 
 
-
 def add_creditcard(request, profile_id):
 	form = CreditCardForm(request.POST)
 	if form.is_valid():
@@ -111,17 +118,19 @@ def add_creditcard(request, profile_id):
 		new_creditcard.save()
 	return redirect('profile_detail')
 
-def assoc_order(request, profile_id, order_id):
-	pass
-
+def add_order(request, shop_id):
+	form = OrderForm(request.POST)
+	if form.is_valid():
+		new_order = form.save(commit=False)
+		new_order.shop_id = shop_id
+		new_order.save()
+	return redirect('shop_detail', shop_id=shop_id)
 
 class OrderList(ListView):
 	model = Order
 class OrderDetail(DetailView):
 	model = Order
-class OrderCreate(CreateView):
-	model = Order
-	fields = ["user_id", "shop_id", "creditcard_id"]
+
 class OrderUpdate(UpdateView):
 	model = Order
 	fields = ["creditcard_id"]
@@ -143,68 +152,3 @@ class CreditCardUpdate(UpdateView):
 class CreditCardDelete(DeleteView):
 	model = CreditCard
 	success_url = "/creditcards/"
-
-
-# SEE COMMENTS ON URLs FOR SHOP AND ICECREAM
-
-# class ShopList(ListView):
-# 	model = Shop
-# class ShopDetail(DetailView):
-# 	model = Shop
-# class ShopCreate(CreateView):
-# 	model = Shop
-# class ShopUpdate(UpdateView):
-# 	model = Shop
-# class ShopDelete(DeleteView):
-# 	model = Shop
-
-# class IceCreamList(ListView):
-# 	model = IceCream
-# class IceCreamDetail(DetailView):
-# 	model = IceCream
-# class IceCreamCreate(CreateView):
-# 	model = IceCream
-# class IceCreamUpdate(UpdateView):
-# 	model = IceCream
-# class IceCreamDelete(DeleteView):
-# 	model = IceCream
-
-
-
-# @login_required
-# def add_feeding(request, cat_id):
-#   # instantiate a new form object using the key-value pairs from the post req
-#   form = FeedingForm(request.POST)
-#   # check if the inputs are valid
-#   if form.is_valid():
-#     # create in-memory representation of the form object
-#     new_feeding = form.save(commit=False)
-#     new_feeding.cat_id = cat_id
-#     new_feeding.save()
-#   return redirect("cats_detail", cat_id=cat_id)
-
-# # @login_required
-# def assoc_toy(request, cat_id, toy_id):
-#   Cat.objects.get(id=cat_id).toys.add(toy_id)
-#   return redirect("cats_detail", cat_id=cat_id)
-
-# @login_required
-# def cats_detail(request, cat_id):
-#   cat = Cat.objects.get(id=cat_id)
-#   # check if cat's user is the actual owner
-#   if cat.user != request.user:
-#     return redirect("cats_index")
-#   # get the toys that the cat doesn't have
-#   unowned_toys = Toy.objects.exclude(
-#     # exclude all toys where the toy id is within the cat's list of owned toys
-#     # note the double underscore in "id__in"
-#     id__in=cat.toys.all().values_list("id")
-#   )
-#   # instantiate feeding form to be rendered in template
-#   feeding_form = FeedingForm()
-#   return render(request, "cats/detail.html", { 
-#     "cat": cat,
-#     "feeding_form": feeding_form,
-#     # add toys to be displayed in selector list
-#     "unowned_toys": unowned_toys,
-#   })

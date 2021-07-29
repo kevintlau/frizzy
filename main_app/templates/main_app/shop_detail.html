@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<center>
+<h1>{{ shop.name }}</h1>
+<br/><br>
+<p class="card-text">
+    City: {{ shop.city }}
+    <br>
+    Phone: {{ shop.phone_number }}
+    <br>
+    Email: {{ shop.email }}
+    <br>
+    Website: {{ shop.website }}
+</p>
+<p>
+    {% for flavor in flavors %}
+    <li>{{ flavor.flavor }}</li>
+    <li>{{ flavor.shop }}</li>
+    <li>{{ flavor.shop_id }}</li>
+    <button type="submit" class="btn btn-secondary">Add Flavor</button>
+    <button type="submit" class="btn btn-secondary">Remove Flavor</button>
+    {% endfor %}
+</p>
+Create An Order for {{ shop.name }}:
+<form action="{% url 'add_order' shop.id%}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">
+        Create an order for this shop
+    </button>
+</form>
+<p>
+    Orders: 
+</p>
+</center>
+{% endblock %}
