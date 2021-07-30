@@ -151,4 +151,4 @@ class CreditCardUpdate(UpdateView):
 	fields = ["card_number", "security_code", "exp_date"]
 class CreditCardDelete(DeleteView):
 	model = CreditCard
-	success_url = "/creditcards/"
+	success_url = "/profile/"

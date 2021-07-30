@@ -66,8 +66,11 @@
                  <p class="card-text">{{credit_card.card_number}}</p>
                  <p class="card-text">{{credit_card.exp_date}}</p>
                 </div>
-              {% endfor %}
-          
+                <div class="card-action">
+                  <a href="{% url 'creditcard_update' credit_card.id %}">Edit</a>
+                  <a href="{% url 'creditcard_delete' credit_card.id %}">Delete</a>
+                </div>
+                {% endfor %}
          
     </div>
 {% endblock %}

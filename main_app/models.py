@@ -82,7 +82,7 @@ class CreditCard(models.Model):
         return self.card_number
     
     def get_absolute_url(self):
-        return reverse('card_detail', kwargs={ 'pk': self.id })
+        return reverse('profile_detail')
 
 class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
