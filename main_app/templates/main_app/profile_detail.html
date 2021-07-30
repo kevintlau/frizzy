@@ -59,18 +59,21 @@
         <form action="{% url 'add_creditcard' user.profile.id %}" method="post">
             {% csrf_token %}
             {{ creditcard_form.as_p }}
-            <input type="submit" class="btn" value="Add CreditCard">
+            <input type="submit" class="btn btn-primary" value="Add CreditCard">
         </form>
               {% for credit_card in user.profile.creditcard_set.all %}
+              <div class="card" style="background-color: hotpink;">
                 <div class="card-body">
                  <p class="card-text">{{credit_card.card_number}}</p>
                  <p class="card-text">{{credit_card.exp_date}}</p>
                 </div>
                 <div class="card-action">
-                  <a href="{% url 'creditcard_update' credit_card.id %}">Edit</a>
-                  <a href="{% url 'creditcard_delete' credit_card.id %}">Delete</a>
+                  <a class="btn btn-primary" href="{% url 'creditcard_update' credit_card.id %}">Edit</a>
+                  <a class="btn btn-warning" href="{% url 'creditcard_delete' credit_card.id %}">Delete</a>
                 </div>
+              </div>
                 {% endfor %}
+
          
     </div>
 {% endblock %}
