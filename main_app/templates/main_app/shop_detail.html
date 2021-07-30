@@ -1,9 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
 <center>
-<h1>{{ shop.name }}</h1>
+<style>
+    body{
+    background-color: black;
+    font: white;
+    align-content: center;
+    text-align: left;
+    color: white;
+    }
+    .item{
+    height:20rem;
+    background: #777;
+    color: white;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    }
+</style>
+
+<div class="item" style="background-image: url(../../static/images/cones.jpg);">
+</div>
+
+<h1 style="font-family: 'Shrikhand', Cursive; color: pink;">{{ shop.name }}</h1>
 <br/><br>
-<p class="card-text">
+<p style="font-family: 'Fanwood Text', Serif;" class="card-text">
     City: {{ shop.city }}
     <br>
     Phone: {{ shop.phone_number }}
@@ -11,26 +32,34 @@
     Email: {{ shop.email }}
     <br>
     Website: {{ shop.website }}
+    <br>
+    Description: {{ shop.description }}
 </p>
-<p>
-    {% for flavor in flavors %}
-    <li>{{ flavor.flavor }}</li>
-    <li>{{ flavor.shop }}</li>
-    <li>{{ flavor.shop_id }}</li>
-    <button type="submit" class="btn btn-secondary">Add Flavor</button>
-    <button type="submit" class="btn btn-secondary">Remove Flavor</button>
-    {% endfor %}
-</p>
-Create An Order for {{ shop.name }}:
-<form action="{% url 'add_order' shop.id%}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">
-        Create an order for this shop
-    </button>
-</form>
-<p>
-    Orders: 
-</p>
+<br>
+<div style="position: relative; top:50px; padding-bottom: 100px;" class="row">
+    <div class="col-6">
+        <h3 style="font-family: 'Shrikhand', Cursive; color:rgb(209, 255, 176) ;">Menu</h3>
+        <p>
+            {% for flavor in flavors %}
+            <h4 style="font-family: 'Shrikhand', Cursive; color: rgb(255, 255, 176);">{{ flavor.flavor }}</h4>
+            {{ flavor.shop }}
+            {{ flavor.description }}
+            <br>
+            <br>
+            {% endfor %}
+        </p>
+    </div>
+    <div class="col-6">
+        <h3 style="font-family: 'Shrikhand', Cursive; color: rgb(209, 255, 176);">Create An Order:</h3>
+        <form action="{% url 'add_order' shop.id%}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">
+                Create an order for this shop
+            </button>
+        </form>
+    </div>
+</div>
+
 </center>
 {% endblock %}
