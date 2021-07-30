@@ -70,7 +70,7 @@
                     <a class="nav-item nav-link" href="">
                         Payment
                     </a>
-                    <a class="nav-item nav-link" href="{% url 'search_shops' %}">Shops</a>
+                    <a class="nav-item nav-link" href="{% url 'shop_index' %}">Shops</a>
                 </div>
                 <form class="d-flex" method="GET" action= "{% url 'search_shops' %}">
                     {% csrf_token %}
