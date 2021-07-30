@@ -50,14 +50,7 @@
         </p>
     </div>
     <div class="col-6">
-        <h3 style="font-family: 'Shrikhand', Cursive; color: rgb(209, 255, 176);">Create An Order:</h3>
-        <form action="{% url 'add_order' shop.id%}" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">
-                Create an order for this shop
-            </button>
-        </form>
+      <a class="btn btn-primary" href="{% url 'order_start' shop.id %}">Start an Order</a>
     </div>
 </div>
 

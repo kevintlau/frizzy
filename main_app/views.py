@@ -1,5 +1,6 @@
 from typing import List
 from django.http import request
+from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.views.generic import (
 	CreateView, 
@@ -121,17 +122,52 @@ def add_creditcard(request, profile_id):
 	return redirect('profile_detail')
 
 def add_order(request, shop_id):
+	print(request)
+	return HttpResponse("success")
 	form = OrderForm(request.POST)
 	if form.is_valid():
 		new_order = form.save(commit=False)
+		new_order.user_id = request.user.id
 		new_order.shop_id = shop_id
 		new_order.save()
-	return redirect('shop_detail', shop_id=shop_id)
+	return redirect('order_index')
+
+# def add_order(request):
+# 	form = OrderForm(request.POST)
+# 	if form.is_valid():
+# 		form.save()
+# 	return redirect('order_index')
 
 class OrderList(ListView):
-	model = Order
+	def get_queryset(self):
+		return Order.objects.filter(user_id=self.request.user.id)
+
 class OrderDetail(DetailView):
 	model = Order
+
+class OrderCreate(CreateView):
+	model = Order
+	# fields = "__all__"
+	fields = ['icecreams','creditcard']
+	success_url = "/orders/"
+
+	# custom form validator to add user and shop ids
+	def form_valid(self, form):
+		new_order = form.save(commit=False)
+		new_order.user_id = self.request.user.id
+		new_order.shop_id = self.request.resolver_match.kwargs['shop_id']
+		new_order.save()
+		return super().form_valid(form)
+
+def start_order(request, shop_id):
+	flavors = IceCream.objects.filter(shop_id=shop_id)
+	creditcards = CreditCard.objects.filter(profile_id=request.user.profile.id)
+	return render(request, "main_app/order_form.html", {
+		"shop_id": shop_id, 
+		"user_id": request.user.id,
+		"flavors": flavors,
+		"creditcards": creditcards,
+	})
 
 class OrderUpdate(UpdateView):
 	model = Order

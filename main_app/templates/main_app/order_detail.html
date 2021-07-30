@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Order Details</h1>
+<div class="card">
+    <h3 class="card-title">{{ object }}</h3>
+    <p class="card-text">
+        User ID: {{ object.user_id }}
+        <br>
+        Shop ID: {{ object.shop_id }}
+        <br>
+        Icecreams: 
+        <ul>
+            {% for flavor in object.icecreams.all %}
+            <li>
+                {{ flavor }}
+            </li>
+            {% endfor %}
+        </ul>
+        CC: {{ object.creditcard }}
+    </p>
+</div>
+
+
+{% endblock %}
