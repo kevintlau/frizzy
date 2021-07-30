@@ -60,6 +60,8 @@ class SearchResultsView(ListView):
 
 	def get_queryset(self):
 		query = self.request.GET.get("search")
+		if not query :
+			query = ""
 		object_list = Shop.objects.filter(
 			Q(name__icontains=query) | Q(city__icontains=query)
 		)
