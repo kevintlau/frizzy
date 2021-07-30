@@ -61,6 +61,8 @@ class SearchResultsView(ListView):
 
 	def get_queryset(self):
 		query = self.request.GET.get("search")
+		if not query :
+			query = ""
 		object_list = Shop.objects.filter(
 			Q(name__icontains=query) | Q(city__icontains=query)
 		)
@@ -187,4 +189,4 @@ class CreditCardUpdate(UpdateView):
 	fields = ["card_number", "security_code", "exp_date"]
 class CreditCardDelete(DeleteView):
 	model = CreditCard
-	success_url = "/creditcards/"
+	success_url = "/profile/"
