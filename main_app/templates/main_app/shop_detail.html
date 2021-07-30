@@ -21,16 +21,8 @@
     <button type="submit" class="btn btn-secondary">Remove Flavor</button>
     {% endfor %}
 </p>
-Create An Order for {{ shop.name }}:
-<form action="{% url 'add_order' shop.id%}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">
-        Create an order for this shop
-    </button>
-</form>
-<p>
-    Orders: 
-</p>
+
+<a href="{% url 'order_start' shop.id %}">Start an Order</a>
+
 </center>
 {% endblock %}

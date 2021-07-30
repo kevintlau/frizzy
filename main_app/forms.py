@@ -51,6 +51,10 @@ class CreditCardForm(ModelForm):
     fields = ['card_number', 'security_code', 'exp_date']
 
 class OrderForm(ModelForm):
+    # user_id = forms.IntegerField(label="User ID")
+    # shop_id = forms.IntegerField(label="Shop ID")
+
     class Meta:
         model = Order
-        fields = ['user', 'shop', 'creditcard', 'icecreams']
+        fields = "__all__"
+        # fields = ['icecreams','creditcard']

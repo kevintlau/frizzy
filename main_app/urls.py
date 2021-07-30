@@ -19,8 +19,11 @@ urlpatterns = [
 	path("creditcards/<int:pk>/delete/", views.CreditCardDelete.as_view(), name="creditcard_delete"),
 	path('profile/<int:profile_id>/add_creditcard/', views.add_creditcard, name='add_creditcard'),
 	# path('profile/<int:profile_id>/add_creditcard/', views.add_creditcard, name='add_creditcard'),
-	path("shops/<int:shop_id>/add_order/", views.add_order, name="add_order"),
+	path("add_order/", views.add_order, name="add_order"),
+
 	path("orders/", views.OrderList.as_view(), name="order_index"),
+	path("orders/create/<int:shop_id>", views.OrderCreate.as_view(), name="order_start"),
+	# path("orders/create/<int:shop_id>", views.start_order, name="order_start"),
 	path("orders/<int:pk>/update/", views.OrderUpdate.as_view(), name="order_update"),
 	path("orders/<int:pk>/delete/", views.OrderDelete.as_view(), name="order_delete"),
 	path("orders/<int:pk>/", views.OrderDetail.as_view(), name="order_detail"),

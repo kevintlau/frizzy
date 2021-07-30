@@ -3,10 +3,13 @@
 
 <form action="" method="POST">
     {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
+    {{ form.as_p }}
     <input class="btn" type="submit" value="Submit">
 </form>
+
+<script>
+    const $selectEl = $("#id_icecreams");
+    $selectEl.addClass("form-select");
+</script>
 
 {% endblock %}
