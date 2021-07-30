@@ -68,6 +68,9 @@ class SearchResultsView(ListView):
 		)
 		return object_list
 
+class ShopList(ListView):
+	model = Shop
+
 def shop_details(request, shop_id):
 	shop = Shop.objects.get(id=shop_id)
 	flavors = IceCream.objects.filter(shop_id=shop_id)
@@ -75,43 +78,17 @@ def shop_details(request, shop_id):
 	form = OrderForm()
 	return render(request, 'main_app/shop_detail.html', {'shop': shop, 'flavors': flavors, 'order': order, 'form': form})
 
-# def search_shops(request):
-# 	if request.method == "POST":
-# 		searched = UserCreationForm(request.POST)
-# 		if searched.is_valid():
-# 			user = searched.save()
-# 			login(request, user)
-# 			shop = Shop.objects.filter(name__contains= searched)
-# 			return render(request, 'search_shops.html',
-# 			{'searched':searched, 
-# 			'shop':shop})
-# 		else:
-# 			error_message = "Invalid search - please try again" 
-# 			return render(request, "registration/signup.html", { 
-#     		"form": form,
-#     		"error_message": error_message,
-# 			})
-
-
-class ProfileList(ListView):
-	model = Profile
-# class ProfileDetail(DetailView):
-# 	model = Profile
+@login_required
 def profile(request):
 	creditcard_form = CreditCardForm()
 	return render(request, 'main_app/profile_detail.html', { 
 		'creditcard_form':creditcard_form
 	})
 	
-
-class ProfileCreate(CreateView):
-	model = Profile
-	# what do we do about the user 1:1 relationship?
-	fields = ["address", "phone_number"]
+# TODO: add profile updating
 class ProfileUpdate(UpdateView):
 	model = Profile
 	fields = ["address", "phone_number"]
-
 
 def add_creditcard(request, profile_id):
 	form = CreditCardForm(request.POST)
@@ -121,23 +98,7 @@ def add_creditcard(request, profile_id):
 		new_creditcard.save()
 	return redirect('profile_detail')
 
-def add_order(request, shop_id):
-	print(request)
-	return HttpResponse("success")
-	form = OrderForm(request.POST)
-	if form.is_valid():
-		new_order = form.save(commit=False)
-		new_order.user_id = request.user.id
-		new_order.shop_id = shop_id
-		new_order.save()
-	return redirect('order_index')
-
-# def add_order(request):
-# 	form = OrderForm(request.POST)
-# 	if form.is_valid():
-# 		form.save()
-# 	return redirect('order_index')
-
+# TODO: add an order list
 class OrderList(ListView):
 	def get_queryset(self):
 		return Order.objects.filter(user_id=self.request.user.id)
@@ -155,6 +116,7 @@ class OrderCreate(CreateView):
 	def form_valid(self, form):
 		new_order = form.save(commit=False)
 		new_order.user_id = self.request.user.id
+		# grab shop ID from URL
 		new_order.shop_id = self.request.resolver_match.kwargs['shop_id']
 		new_order.save()
 		return super().form_valid(form)
@@ -169,6 +131,7 @@ def start_order(request, shop_id):
 		"creditcards": creditcards,
 	})
 
+# TODO: add order update and deletion
 class OrderUpdate(UpdateView):
 	model = Order
 	fields = ["creditcard_id"]
@@ -177,13 +140,6 @@ class OrderDelete(DeleteView):
 	success_url = "/orders/"
 
 
-class CreditCardList(ListView):
-	model = CreditCard
-class CreditCardDetail(DetailView):
-	model = CreditCard
-class CreditCardCreate(CreateView):
-	model = CreditCard
-	fields = "__all__"
 class CreditCardUpdate(UpdateView):
 	model = CreditCard
 	fields = ["card_number", "security_code", "exp_date"]

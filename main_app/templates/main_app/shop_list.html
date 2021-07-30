@@ -1,0 +1,27 @@
+{% extends 'home.html' %}
+{% block content %}
+<h1 style="text-align: center ; color:pink ; font-family: 'Shrikhand', Cursive;">All Shops</h1>
+    <div style="text-align: center; margin-left: 25%; font-family: 'Fanwood Text', Serif;;" class="container">
+        {% for shop in object_list %}
+            <a class="link" href="/shops/{{ shop.id }}">
+                <div class="card mb-4" style="width: 36rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ shop.name }}</h5>
+                        <p class="card-text">
+                            {{ shop.description }}
+                        </p>
+                        <p class="card-text">
+                            City: {{ shop.city }}
+                            <br>
+                            Phone: {{ shop.phone_number }}
+                            <br>
+                            Email: {{ shop.email }}
+                            <br>
+                            Website: {{ shop.website }}
+                        </p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+    {% endblock %}
