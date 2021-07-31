@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Delete Order</h1>
+
+  <h4 style="font-family: 'Fanwood Text', Serif;">Are you sure you want to delete for <span class="teal-text">{{ object.shop }}</span>?</h4>
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input class="btn btn-primary"  type="submit" value="Yes - Delete!" class="btn">
+    <a href="{% url 'order_index'%}">Cancel</a>
+  </form>
+{% endblock %}

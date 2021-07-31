@@ -3,7 +3,7 @@
         "model": "main_app.Shop",
         "pk": 1,
         "fields": {
-            "name": "Shop",
+            "name": "Minty Melon",
             "address": "market street",
             "phone_number": "1234567890",
             "email": "shop1email.email",
@@ -11,14 +11,15 @@
             "description": "shop icecream is vegan!",
             "city": "market city",
             "rating": 5.0,
-            "delivery_fee": 2.00
+            "delivery_fee": 2.00,
+            "imgs": "../../static/images/shop1.jpg"
         }
     },
     {
         "model": "main_app.Shop",
         "pk": 2,
         "fields": {
-            "name": "Shop2",
+            "name": "Baked Cookie",
             "address": "berry street",
             "phone_number": "1239567890",
             "email": "shop2email.email",
@@ -26,14 +27,15 @@
             "description": "we have new specialities every week!",
             "city": "berry city",
             "rating": 4.0,
-            "delivery_fee": 2.00
+            "delivery_fee": 2.00,
+            "imgs": "../../static/images/shop2.jpg"
         }
     },
     {
         "model": "main_app.Shop",
         "pk": 3,
         "fields": {
-            "name": "Shop3",
+            "name": "Snowball",
             "address": "cheesecake street",
             "phone_number": "1139567890",
             "email": "shop3email.email",
@@ -41,14 +43,15 @@
             "description": "we love creamy cream icecream!",
             "city": "cheesecake city",
             "rating": 5.0,
-            "delivery_fee": 2.00
+            "delivery_fee": 2.00,
+            "imgs": "../../static/images/shop3.jpg"
         }
     },
     {
         "model": "main_app.Shop",
         "pk": 4,
         "fields": {
-            "name": "Shop4",
+            "name": "Ice Cold Creamery",
             "address": "caramelcrumble street",
             "phone_number": "1249567890",
             "email": "shop4email.email",
@@ -56,14 +59,15 @@
             "description": "we want you to feel at home!",
             "city": "caramelcrumble city",
             "rating": 4.0,
-            "delivery_fee": 1.00
+            "delivery_fee": 1.00,
+            "imgs": "../../static/images/shop4.jpg"
         }
     },
     {
         "model": "main_app.Shop",
         "pk": 5,
         "fields": {
-            "name": "Shop3",
+            "name": "Delight",
             "address": "mango street",
             "phone_number": "1238567890",
             "email": "shop5email.email",
@@ -71,7 +75,8 @@
             "description": "we want you to try out fruity delights!",
             "city": "mango city",
             "rating": 5.0,
-            "delivery_fee": 3.00
+            "delivery_fee": 3.00,
+            "imgs": "../../static/images/cones.jpg"
         }
     }
 ]

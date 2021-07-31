@@ -134,7 +134,7 @@ def start_order(request, shop_id):
 # TODO: add order update and deletion
 class OrderUpdate(UpdateView):
 	model = Order
-	fields = ["creditcard_id"]
+	fields = ["icecreams"]
 class OrderDelete(DeleteView):
 	model = Order
 	success_url = "/orders/"

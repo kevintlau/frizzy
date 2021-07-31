@@ -1,23 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <style>
-        body{
-            background-color: black;
-            font: white;
-            align-content: center;
-            text-align: left;
-        }
-        #cart-div{
-            text-align: left;
-            padding-top: 100px;
-        }
-    </style>
+  <style>
+      #cart-div{
+          text-align: left;
+          padding-top: 100px;
+      }
+  </style>
     <div id="main-profile-container" class="container">
         <div class="row">
-            <h2 style="color: pink; font-family: 'Shrikhand', Cursive;">Welcome, {{ user.username }}</h1>
+            <h2 >Welcome, {{ user.username }}</h1>
             <div style="font-family: 'Fanwood Text', Serif;" class="col-6">
-                <!-- <h2 style="color: pink; font-family: 'Shrikhand', Cursive;">Welcome, {{ user.username }}</h1> -->
                 <br>
                 <br>
                 <p>Your Location: {{user.profile.address}}</p>
@@ -25,7 +18,7 @@
             </div>
             <div class="col-6">
                 <div class="card" style="width: 30rem; color: white; background-color: black;">
-                    <h2 style="font-family: 'Shrikhand', Cursive;">Got IceCream?</h2>
+                    <h2>Got IceCream?</h2>
                     <img src="../../static/images/cones.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                       <p style="font-size: 20px;font-family: 'Fanwood Text', Serif;" class="card-text">
@@ -36,44 +29,59 @@
                 </div>
             </div>
         </div>
-        <!-- <div id="cart-div" class="row">
-            <div class="col-12">
-                <h2>Your Cart</h2>
+        <br>
+        <br>
+        <div style="padding-bottom: 100px;" class="row">
+          <div class="col-6">
+            <div style="background-color: black;" class="card mb-3" style="max-width: cover;">
+                <h2 >Checkout! Ice cream's melting...</h2>
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="../../static/images/berry-cone.jpg" class="img-fluid rounded-start" alt="...">
+                  </div>
+                  <div style="font-family: 'Fanwood Text', Serif;" class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">Your Cart</h5>
+                      <p class="card-text">
+                      </p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                  </div>
+                </div>
             </div>
-        </div> -->
-        <div style="background-color: black;" class="card mb-3" style="max-width: cover;">
-            <h2 style="font-family: 'Shrikhand', Cursive;">Checkout! Ice cream's melting...</h2>
-            <div class="row g-0">
-              <div class="col-md-4">
-                <img src="../../static/images/berry-cone.jpg" class="img-fluid rounded-start" alt="...">
-              </div>
-              <div style="font-family: 'Fanwood Text', Serif;" class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">Your Cart</h5>
-                  <p class="card-text"></p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+          <div class="col-6">
+            <form action="{% url 'add_creditcard' user.profile.id %}" method="post">
+                {% csrf_token %}
+                {{ creditcard_form.as_p }}
+                <input type="submit" class="btn btn-primary" value="Add CreditCard">
+            </form>
+            <br>
+                  {% for credit_card in user.profile.creditcard_set.all %}
+                  <div id="accordion">
+                      <div class="card">
+                        <div class="card-header" id="headingOne">
+                          <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              Credit Card {{credit_card.id}}
+                            </button>
+                          </h5>
+                        </div>
+                    
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                          <div style="color: black;" class="card-body">
+                            <p class="card-text">{{credit_card.card_number}}</p>
+                            <p class="card-text">{{credit_card.exp_date}}</p>
+                            <div class="card-action">
+                              <a class="btn btn-primary" href="{% url 'creditcard_update' credit_card.id %}">Edit</a>
+                              <a class="btn btn-warning" href="{% url 'creditcard_delete' credit_card.id %}">Delete</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  {% endfor %}
                 </div>
               </div>
-            </div>
-        </div>
-        <form action="{% url 'add_creditcard' user.profile.id %}" method="post">
-            {% csrf_token %}
-            {{ creditcard_form.as_p }}
-            <input type="submit" class="btn btn-primary" value="Add CreditCard">
-        </form>
-              {% for credit_card in user.profile.creditcard_set.all %}
-              <div class="card" style="background-color: hotpink;">
-                <div class="card-body">
-                 <p class="card-text">{{credit_card.card_number}}</p>
-                 <p class="card-text">{{credit_card.exp_date}}</p>
-                </div>
-                <div class="card-action">
-                  <a class="btn btn-primary" href="{% url 'creditcard_update' credit_card.id %}">Edit</a>
-                  <a class="btn btn-warning" href="{% url 'creditcard_delete' credit_card.id %}">Delete</a>
-                </div>
-              </div>
-                {% endfor %}
-
-         
     </div>
 {% endblock %}

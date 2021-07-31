@@ -1,26 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
-<style>
-    body{
-    background-color: black;
-    font: white;
-    align-content: center;
-    text-align: left;
-    color: white;
-    }
-</style>
-<div class="container">
-<h1 style="font-family: 'Shrikhand', Cursive;color: pink; text-align: center;">Hello, Welcome to Frizzy!</h1>
-<hr />
-<div style="font-family: 'Fanwood Text', Serif; text-align: center;">
-    <p>This app was designed to allow you to personalize your favorite ice cream shops.</p>
-    <p>Pick your favorite shop closest to your location.</p>
-    <p>On-Demand Delivery!</p>
-    <p>You will be able to search ratings, prices, and pick your favorite flavors!</p>
-    <p>Not to mention those with certain dietary restictions, we've got you covered. :)</p>
-    <P>Frizzy is your go to app for ice-cream; we guarantee our customers will love it.</P>
-    <p>We hope you love it as much as we do! Enjoy!</p>
-</div>
+<div style="align-items: center;" class="row">
+    <div class="col-6">
+        <img id="test" class="img-fluid" src="../static/images/yay-cream.jpg" alt="" style="height: auto; width: 600px;">
+    </div>
+    <div class="col-6">
+        <h1 style="text-align: center;">Hello, Welcome to Frizzy!</h1>
+        <hr />
+        <div style="font-size: 20px ;font-family: 'Fanwood Text', Serif; text-align: center;">
+            <p>This app was designed to allow you to personalize your favorite ice cream shops.</p>
+            <p>Pick your favorite shop closest to your location.</p>
+            <p>On-Demand Delivery!</p>
+            <p>You will be able to search ratings, prices, and pick your favorite flavors!</p>
+            <p>Not to mention those with certain dietary restictions, we've got you covered. :)</p>
+            <P>Frizzy is your go to app for ice-cream; we guarantee our customers will love it.</P>
+            <p>We hope you love it as much as we do! Enjoy!</p>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
