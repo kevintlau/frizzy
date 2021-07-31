@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Log In</h1>
+<h1 class="text-center mb-4">Log In</h1>
 <form action="{% url 'login' %}" method="POST">
     {% csrf_token %}
     <table style="color: white;" class="table">

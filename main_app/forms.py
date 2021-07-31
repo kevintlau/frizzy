@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import CreditCard, Order
 
+# modified sign up form for users to create a profile alongside a standard acct
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30)
     last_name = forms.CharField(max_length=30)
@@ -44,7 +45,7 @@ class SignUpForm(UserCreationForm):
         'address', 
         'phone_number'
     ]
- 
+
 class CreditCardForm(ModelForm):
   class Meta:
     model = CreditCard

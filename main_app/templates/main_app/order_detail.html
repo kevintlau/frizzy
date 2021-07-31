@@ -1,25 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Order Details</h1>
-<div style=" color:cornflowerblue; background-color:burlywood; font-family: 'Fanwood Text', Serif;" class="card">
-    <h3 class="card-title">{{ object }}</h3>
-    <p class="card-text">
-        User ID: {{ object.user_id }}
-        <br>
-        Shop ID: {{ object.shop_id }}
-        <br>
-        Icecreams: 
-        <ul>
-            {% for flavor in object.icecreams.all %}
-            <li>
-                {{ flavor }}
-            </li>
-            {% endfor %}
-        </ul>
-        CC: {{ object.creditcard }}
-    </p>
-</div>
 
+    <h1 class="text-center mb-4">Order Details</h1>
+    <div class="card mx-auto" style="max-width: 36rem;">
+        <div class="card-body">
+            <h3 class="card-title text-center">{{ object }}</h3>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <strong>Flavors: </strong>
+                <ul>
+                {% for flavor in object.icecreams.all %}
+                    <li>{{ flavor }}</li>
+                {% endfor %}
+                </ul>
+            </li>
+            <li class="list-group-item">
+                <strong>Credit Card:</strong>
+                <br>
+                {{ object.creditcard }}
+            </li>
+        </ul>
+        <div class="card-body mx-auto">
+            <a 
+                class="card-link btn btn-success" 
+                href="{% url 'order_update' order.id %}"
+            >
+                Edit Order
+            </a>
+            <a 
+                class="card-link btn btn-danger" 
+                href="{% url 'order_delete' order.id %}"
+            >
+                Delete Order
+            </a>
+        </div>
+    </div>
 
 {% endblock %}

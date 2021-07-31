@@ -135,7 +135,7 @@ def start_order(request, shop_id):
 
 class OrderUpdate(LoginRequiredMixin, UpdateView):
 	model = Order
-	fields = ["icecreams"]
+	fields = ["icecreams", "creditcard"]
 class OrderDelete(LoginRequiredMixin, DeleteView):
 	model = Order
 	success_url = "/orders/"
