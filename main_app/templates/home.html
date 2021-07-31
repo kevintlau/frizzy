@@ -1,19 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <center>
-<style>
-    body{
-    background-color: black;
-    font: white;
-    align-content: center;
-    text-align: left;
-    color: white;
-    }
-</style>
 <img src="../static/images/frizzy.png" alt="">
 <!-- <h1 style="font-size: 100px; font-family: 'Shrikhand', Cursive; color: pink;">Frizzy</h1> -->
 <br/><br>
-<h2 style="font-family: 'Shrikhand', Cursive; color: pink;"> Hello, {{ user.username }}! </h2>
+<h2> Hello, {{ user.username }}! </h2>
 <p style="font-family: 'Fanwood Text', Serif;">Let's get started on your next order.</p>
 </center>
 {% endblock %}
