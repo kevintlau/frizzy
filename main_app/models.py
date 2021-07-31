@@ -77,7 +77,7 @@ class CreditCard(models.Model):
     address = models.TextField(max_length=200)
     security_code = models.CharField(max_length=4)
     exp_date = models.DateField()
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, default=1)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.card_number
