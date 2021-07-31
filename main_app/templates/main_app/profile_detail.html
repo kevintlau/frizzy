@@ -1,87 +1,73 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <style>
-      #cart-div{
-          text-align: left;
-          padding-top: 100px;
-      }
-  </style>
-    <div id="main-profile-container" class="container">
-        <div class="row">
-            <h2 >Welcome, {{ user.username }}</h1>
-            <div style="font-family: 'Fanwood Text', Serif;" class="col-6">
-                <br>
-                <br>
-                <p>Your Location: {{user.profile.address}}</p>
-                <p>Phone Number: {{user.profile.phone_number}}</p>
-            </div>
-            <div class="col-6">
-                <div class="card" style="width: 30rem; color: white; background-color: black;">
-                    <h2>Got IceCream?</h2>
-                    <img src="../../static/images/cones.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <p style="font-size: 20px;font-family: 'Fanwood Text', Serif;" class="card-text">
-                        Frizzy is a delivery app that connects you to your favorite flavors, whether they’re in ice cream parlors, restaurants, and even grocery stores. You can order from a wide variety of ice cream styles, like plain scooped cups to ice cream bars to full-size tubs from a freezer. You can even send some love to a friend or relative who needs an icy treat to brighten their day.
-                        Whatever the occasion or mood, use Frizzy for hassle-free ice cream delivery!
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <br>
-        <div style="padding-bottom: 100px;" class="row">
-          <div class="col-6">
-            <div style="background-color: black;" class="card mb-3" style="max-width: cover;">
-                <h2 >Checkout! Ice cream's melting...</h2>
-                <div class="row g-0">
-                  <div class="col-md-4">
-                    <img src="../../static/images/berry-cone.jpg" class="img-fluid rounded-start" alt="...">
-                  </div>
-                  <div style="font-family: 'Fanwood Text', Serif;" class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">Your Cart</h5>
-                      <p class="card-text">
-                      </p>
-                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </div>
-          <div class="col-6">
-            <form action="{% url 'add_creditcard' user.profile.id %}" method="post">
-                {% csrf_token %}
-                {{ creditcard_form.as_p }}
-                <input type="submit" class="btn btn-primary" value="Add CreditCard">
-            </form>
-            <br>
-                  {% for credit_card in user.profile.creditcard_set.all %}
-                  <div id="accordion">
-                      <div class="card">
-                        <div class="card-header" id="headingOne">
-                          <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              Credit Card {{credit_card.id}}
-                            </button>
-                          </h5>
-                        </div>
-                    
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                          <div style="color: black;" class="card-body">
-                            <p class="card-text">{{credit_card.card_number}}</p>
-                            <p class="card-text">{{credit_card.exp_date}}</p>
-                            <div class="card-action">
-                              <a class="btn btn-primary" href="{% url 'creditcard_update' credit_card.id %}">Edit</a>
-                              <a class="btn btn-warning" href="{% url 'creditcard_delete' credit_card.id %}">Delete</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  {% endfor %}
-                </div>
-              </div>
-    </div>
+	
+	<h1 class="text-center mb-4">Welcome, {{ user.username }}</h1>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-6 px-2 text-center">
+				<h2 class="mb-4">Profile</h2>
+				<p><strong>Location:</strong><br>{{ user.profile.address }}</p>
+				<p><strong>Phone:</strong><br>{{ user.profile.phone_number }}</p>
+				<a href="#" class="btn btn-primary">Edit Your Profile</a>
+				<hr>
+				<h2 class="text-center my-2">Checkout: ice cream is melting!</h2>
+				<p>Check your recent orders here</p>
+				<a href="{% url 'order_index' %}" class="btn btn-primary"> View Your Orders</a>
+				<img src="../../static/images/cones.jpg" class="mt-4" alt="...">
+			</div>
+			<div class="col-6 px-2 text-center">
+				<h2 class="mb-4">Payment Information</h2>
+				<div class="accordion" id="card-accordion">
+				{% for credit_card in user.profile.creditcard_set.all %}
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="heading-{{ credit_card.id }}">
+							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ credit_card.id }}" aria-expanded="true" aria-controls="collapse-{{ credit_card.id }}">
+								Credit Card
+							</button>
+						</h2>
+						<div id="collapse-{{ credit_card.id }}" class="accordion-collapse collapse show" aria-labelledby="heading-{{ credit_card.id }}" data-bs-parent="#card-accordion">
+							<div class="accordion-body">
+								<p class="card-text">
+									<strong>Card Number:</strong>
+									<br>
+									{{credit_card.card_number}}
+								</p>
+								<p class="card-text">
+									<strong>Expiration Date:</strong>
+									<br>
+									{{credit_card.exp_date}}
+								</p>
+								<a class="btn btn-primary" href="{% url 'creditcard_update' credit_card.id %}">Edit</a>
+								<a class="btn btn-warning" href="{% url 'creditcard_delete' credit_card.id %}">Delete</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+				</div>
+
+				<div class="mx-auto mt-4 card" style="max-width: 30rem;">
+					<div class="card-body">
+						<h4 class="card-title">Add a New Card</h4>
+						<form action="{% url 'add_creditcard' user.profile.id %}" method="POST">
+							{% csrf_token %}
+							{{ creditcard_form.as_p }}
+							<input class="btn btn-primary" type="submit" value="Submit">
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const $selectEl = $("#id_icecreams");
+		$selectEl.addClass("form-select");
+	
+		const $labelEl = $("label");
+		$labelEl.addClass("text-dark")
+	</script>
+
 {% endblock %}

@@ -7,7 +7,11 @@
     {% for order in object_list %}
         <div class="card mb-4 mx-auto" style="max-width: 36rem;">
             <div class="card-body">
-                <a class="h4 link card-title" href="{% url 'order_detail' order.id %}">
+                <a 
+                    class="h4 link card-title" 
+                    href="{% url 'order_detail' order.id %}"
+                    style="color: #56A1B3;"
+                >
                     {{ order }}
                 </a>
                 <div class="mt-2">

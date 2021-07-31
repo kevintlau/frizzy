@@ -1,59 +1,68 @@
 * {
-  Font-Family: 'Fanwood Text', Serif;
+	Font-Family: 'Fanwood Text', Serif;
 }
 
 h1, h2, h3, h4, h5, h6, 
 a.h1, a.h2, a.h3, a.h4, a.h5, a.h6, 
 .navbar-brand {
-  Font-Family: 'Shrikhand', Cursive;
-  Color: pink;
+	Font-Family: 'Shrikhand', Cursive;
+	Color: pink;
 }
 
 p {
-  font-size: 18px;
+	font-size: 18px;
 }
 
 main {
-  padding-top: 1.6rem;
-  padding-bottom: 3.2rem;
+	padding-top: 1.6rem;
+	padding-bottom: 3.2rem;
 }
 
 footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.995);
-  color: black;
-  text-align: center;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.995);
+	color: black;
+	text-align: center;
 }
 
 body {
-  background-color: black;
-  color: white;
-  align-content: center;
-  text-align: left;
+	background-color: black;
+	color: white;
+	align-content: center;
+	text-align: left;
 }
 
 .card-text {
-  color: black;
+	color: black;
 }
 
 .link {
-  text-decoration: none; 
+	text-decoration: none; 
+}
+
+.item {
+	height:20rem;
+	background: #777;
+	color: white;
+	position: relative;
+	background-position: center;
+	background-size: cover;
 }
 
 #about-img {
-  height: auto; 
-  width: 600px;
-  -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+	height: auto; 
+	width: 600px;
+	-webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
 }
 
 @-webkit-keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }
