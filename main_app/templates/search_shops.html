@@ -1,41 +1,32 @@
 {% extends 'home.html' %}
 {% block content %}
-    <style>
-        .link{
-            color:black;
-            text-decoration: none; 
-            background-color: none;
-        }
-        body{
-        background-color: black;
-        font: white;
-        align-content: center;
-        text-align: left;
-        color: white;
-        }
-    </style>
-    <h1 style="text-align: center ; color:pink ; font-family: 'Shrikhand', Cursive;">Search Results</h1>
-    <div style="text-align: center; margin-left: 25%; font-family: 'Fanwood Text', Serif;;" class="container">
+
+    <h1 class="text-center mb-4">Search Results</h1>
+    <div class="text-center">
     {% for shop in object_list %}
-        <a class="link" href="/shops/{{ shop.id }}">
-            <div class="card mb-4" style="width: 36rem;">
-                <div class="card-body">
-                    <h5 class="card-title">{{ shop.name }}</h5>
-                    <p class="card-text">
-                        {{ shop.description }}
-                    </p>
-                    <p class="card-text">
-                        City: {{ shop.city }}
-                        <br>
-                        Phone: {{ shop.phone_number }}
-                        <br>
-                        Email: {{ shop.email }}
-                        <br>
-                        Website: {{ shop.website }}
-                    </p>
-                </div>
+        <div class="card mb-4 mx-auto" style="max-width: 36rem;">
+            <div class="card-body">
+                <a class="h2 link card-title" href="/shops/{{ shop.id }}">
+                    {{ shop.name }}
+                </a>
+                <p class="card-text">
+                    {{ shop.description }}
+                </p>
+                <p class="card-text">
+                    City: {{ shop.city }}
+                    <br>
+                    Phone: {{ shop.phone_number }}
+                    <br>
+                    Email: {{ shop.email }}
+                    <br>
+                    Website: {{ shop.website }}
+                </p>
+                <a class="card-link btn btn-info" href="/shops/{{ shop.id }}">
+                    Visit Shop
+                </a>
             </div>
-        </a>
+        </div>
     {% endfor %}
     </div>
+
 {% endblock %}

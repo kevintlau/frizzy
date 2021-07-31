@@ -16,10 +16,8 @@ urlpatterns = [
 	path("creditcards/<int:pk>/update/", views.CreditCardUpdate.as_view(), name="creditcard_update"),
 	path("creditcards/<int:pk>/delete/", views.CreditCardDelete.as_view(), name="creditcard_delete"),
 	
-	# TODO: add order index using class-based view
 	path("orders/", views.OrderList.as_view(), name="order_index"),
 	path("orders/create/<int:shop_id>", views.OrderCreate.as_view(), name="order_start"),
-	# TODO: add order editing and deletion
 	path("orders/<int:pk>/update/", views.OrderUpdate.as_view(), name="order_update"),
 	path("orders/<int:pk>/delete/", views.OrderDelete.as_view(), name="order_delete"),
 	path("orders/<int:pk>/", views.OrderDetail.as_view(), name="order_detail"),

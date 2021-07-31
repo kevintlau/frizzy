@@ -1,13 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Delete CreditCard</h1>
 
-  <h4>Are you sure you want to delete <span class="teal-text">{{ object.name }}</span>?</h4>
+	<h1 class="text-center mb-4">Delete Credit Card</h1>
 
-  <form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes - Delete!" class="btn">
-    <a href="{% url 'profile_detail'%}">Cancel</a>
-  </form>
+	<p class="text-center">
+		Are you sure you want to delete card 
+			<span style="color: lightgreen">{{ object }}</span>?
+	</p>
+
+	<div class="text-center">
+		<form action="" method="POST">
+			{% csrf_token %}
+			<input 
+				class="btn btn-danger" 
+				type="submit" 
+				value="Yes - Delete!"
+			>
+			<a 
+				class="btn btn-secondary" 
+				href="{% url 'profile_detail' %}"
+			>
+				No - Cancel
+			</a>
+		</form>
+	</div>
+
 {% endblock %}

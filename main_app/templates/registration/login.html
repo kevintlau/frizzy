@@ -2,13 +2,19 @@
 
 {% block content %}
 
-<h1>Log In</h1>
-<form action="{% url 'login' %}" method="POST">
-    {% csrf_token %}
-    <table style="color: white;" class="table">
-        {{ form.as_table }}
-    </table>
-    <input type="submit" value="Log In" class="btn btn-primary">
-    <input type="hidden" name="next" value="{{ next }}">
-</form>
+    <h1 class="text-center mb-4">Log In</h1>
+
+    <div class="mx-auto card" style="max-width: 36rem;">
+        <div class="card-body">
+            <form action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <table class="table">
+                    {{ form.as_table }}
+                </table>
+                <input type="submit" value="Log In" class="btn btn-primary">
+                <input type="hidden" name="next" value="{{ next }}">
+            </form>
+        </div>
+    </div>
+
 {% endblock %}

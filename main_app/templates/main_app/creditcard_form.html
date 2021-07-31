@@ -1,16 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  {% if object %}
-    <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
-  {% else %}
-    <h1>Add Credit Card</h1>
-  {% endif %}
-  <form action="" method="post">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit!" class="btn">
-  </form>
+
+
+	<h1 class="text-center mb-4">Edit Credit Card</h1>
+
+	<div class="mx-auto card" style="max-width: 36rem;">
+		<div class="card-body">
+			<form action="" method="POST">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<input class="btn btn-primary" type="submit" value="Submit">
+			</form>
+		</div>
+	</div>
+
+	<script>
+		const $labelEl = $("label");
+		$labelEl.addClass("text-dark")
+	</script>
+
 {% endblock %}

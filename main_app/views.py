@@ -90,6 +90,7 @@ class ProfileUpdate(UpdateView):
 	model = Profile
 	fields = ["address", "phone_number"]
 
+@login_required
 def add_creditcard(request, profile_id):
 	form = CreditCardForm(request.POST)
 	if form.is_valid():
@@ -98,15 +99,14 @@ def add_creditcard(request, profile_id):
 		new_creditcard.save()
 	return redirect('profile_detail')
 
-# TODO: add an order list
-class OrderList(ListView):
+class OrderList(LoginRequiredMixin, ListView):
 	def get_queryset(self):
 		return Order.objects.filter(user_id=self.request.user.id)
 
-class OrderDetail(DetailView):
+class OrderDetail(LoginRequiredMixin, DetailView):
 	model = Order
 
-class OrderCreate(CreateView):
+class OrderCreate(LoginRequiredMixin, CreateView):
 	model = Order
 	# fields = "__all__"
 	fields = ['icecreams','creditcard']
@@ -121,6 +121,7 @@ class OrderCreate(CreateView):
 		new_order.save()
 		return super().form_valid(form)
 
+@login_required
 def start_order(request, shop_id):
 	flavors = IceCream.objects.filter(shop_id=shop_id)
 	creditcards = CreditCard.objects.filter(profile_id=request.user.profile.id)
@@ -131,18 +132,18 @@ def start_order(request, shop_id):
 		"creditcards": creditcards,
 	})
 
-# TODO: add order update and deletion
-class OrderUpdate(UpdateView):
+
+class OrderUpdate(LoginRequiredMixin, UpdateView):
 	model = Order
-	fields = ["icecreams"]
-class OrderDelete(DeleteView):
+	fields = ["icecreams", "creditcard"]
+class OrderDelete(LoginRequiredMixin, DeleteView):
 	model = Order
 	success_url = "/orders/"
 
 
-class CreditCardUpdate(UpdateView):
+class CreditCardUpdate(LoginRequiredMixin, UpdateView):
 	model = CreditCard
 	fields = ["card_number", "security_code", "exp_date"]
-class CreditCardDelete(DeleteView):
+class CreditCardDelete(LoginRequiredMixin, DeleteView):
 	model = CreditCard
 	success_url = "/profile/"
