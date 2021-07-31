@@ -13,7 +13,7 @@ A web application built on the Django framework in Python. The app connects you 
 
 ### Getting Started
 
-[Click Here](#) to browse the app!
+[Click Here](https://frizzy-app.herokuapp.com/) to browse the app!
 
 Start by sign up. You can search for stores in your city, browse their offerings, and start an order by adding your favorite flavors.
 
