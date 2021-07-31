@@ -1,6 +1,13 @@
 {% extends 'home.html' %}
 {% block content %}
-<h1 style="text-align: center ; color:pink ; font-family: 'Shrikhand', Cursive;">All Shops</h1>
+<style>
+    .link{
+        color:black;
+        text-decoration: none; 
+        background-color: none;
+    }
+</style>
+<h1 style="text-align: center;">All Shops</h1>
     <div style="text-align: center; margin-left: 25%; font-family: 'Fanwood Text', Serif;;" class="container">
         {% for shop in object_list %}
             <a class="link" href="/shops/{{ shop.id }}">

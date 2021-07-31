@@ -2,13 +2,6 @@
 {% block content %}
 <center>
 <style>
-    body{
-    background-color: black;
-    font: white;
-    align-content: center;
-    text-align: left;
-    color: white;
-    }
     .item{
     height:20rem;
     background: #777;
@@ -19,10 +12,10 @@
     }
 </style>
 
-<div class="item" style="background-image: url(../../static/images/cones.jpg);">
+<div class="item" style="background-image: url({{shop.imgs}});">
 </div>
 
-<h1 style="font-family: 'Shrikhand', Cursive; color: pink;">{{ shop.name }}</h1>
+<h1>{{ shop.name }}</h1>
 <br/><br>
 <p style="font-family: 'Fanwood Text', Serif;" class="card-text">
     City: {{ shop.city }}
@@ -38,7 +31,7 @@
 <br>
 <div style="position: relative; top:50px; padding-bottom: 100px;" class="row">
     <div class="col-6">
-        <h3 style="font-family: 'Shrikhand', Cursive; color:rgb(209, 255, 176) ;">Menu</h3>
+        <h3 style= "color:rgb(209, 255, 176) ;">Menu</h3>
         <p>
             {% for flavor in flavors %}
             <h4 style="font-family: 'Shrikhand', Cursive; color: rgb(255, 255, 176);">{{ flavor.flavor }}</h4>
@@ -50,7 +43,7 @@
         </p>
     </div>
     <div class="col-6">
-      <a class="btn btn-primary" href="{% url 'order_start' shop.id %}">Start an Order</a>
+      <a class="btn btn-info" href="{% url 'order_start' shop.id %}">Start an Order</a>
     </div>
 </div>
 

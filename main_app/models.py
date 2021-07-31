@@ -37,6 +37,7 @@ class Shop(models.Model):
     city = models.CharField(max_length=200)
     rating = models.DecimalField(max_digits=2, decimal_places=1)
     delivery_fee = models.DecimalField(max_digits=3, decimal_places=2)
+    imgs = models.CharField(max_length=200, default=1)
 
     def __str__(self):
         return self.name
@@ -76,7 +77,7 @@ class CreditCard(models.Model):
     address = models.TextField(max_length=200)
     security_code = models.CharField(max_length=4)
     exp_date = models.DateField()
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, default=1)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.card_number
